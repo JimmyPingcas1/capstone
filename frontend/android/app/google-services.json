@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "382372436134",
+    "project_id": "fishpond-b08fa",
+    "storage_bucket": "fishpond-b08fa.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:382372436134:android:ed043c251ca3f789ccfc67",
+        "android_client_info": {
+          "package_name": "com.example.fishpond"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAkfcSG43DUQg-jQHHVMBHFIF4fxsnnxLo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

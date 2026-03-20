@@ -1,0 +1,61 @@
+{
+  "files": {
+    "5params": "C:\\Users\\USER\\Desktop\\capstone\\z-AI\\AforProduction\\pondContol.pkl",
+    "4params": "C:\\Users\\USER\\Desktop\\capstone\\z-AI\\AforProduction\\4ParametersPkl.pkl",
+    "do_model": "C:\\Users\\USER\\Desktop\\capstone\\z-AI\\AforProduction\\station1_random_classifier_compact.pkl"
+  },
+  "checks": {
+    "5params_predict_rows": 1000,
+    "4params_predict_rows": 1000,
+    "do_predict_rows": 1000,
+    "do_pred_min": 3.8554530098225217,
+    "do_pred_max": 13.774234628928067
+  },
+  "metrics": {
+    "5params_best_metrics": {
+      "subset_accuracy": 0.909014498844295,
+      "macro_f1": 0.9160839772287798,
+      "per_target_accuracy": {
+        "Aerator": 0.9670098760243748,
+        "Water Pump": 0.9712124395881487,
+        "Heater": 0.968270645093507
+      },
+      "per_target_f1": {
+        "Aerator": 0.8168028004667445,
+        "Water Pump": 0.9557921910293643,
+        "Heater": 0.9756569401902305
+      }
+    },
+    "4params_metrics": {
+      "subset_accuracy": 0.9064929607060307,
+      "macro_f1": 0.9621202655051249,
+      "per_target_accuracy": {
+        "Water Pump": 0.9525110317293549,
+        "Heater": 0.9516705190166002
+      },
+      "per_target_f1": {
+        "Water Pump": 0.9716436637390213,
+        "Heater": 0.9525968672712284
+      }
+    }
+  },
+  "metadata": {
+    "5params_targets": [
+      "Aerator",
+      "Water Pump",
+      "Heater"
+    ],
+    "4params_targets": [
+      "Water Pump",
+      "Heater"
+    ],
+    "do_class_order": [
+      "Danger",
+      "Poor",
+      "Fair",
+      "Good",
+      "Excellent"
+    ],
+    "do_feature_count": 35
+  }
+}

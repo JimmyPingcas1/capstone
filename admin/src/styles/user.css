@@ -1,0 +1,352 @@
+.user-management-container {
+  padding: 32px;
+  max-width: 1400px;
+  margin: 0 auto;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.user-management-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.user-management-page-title {
+  margin: 0;
+  font-size: 32px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.user-management-page-subtitle {
+  margin: 8px 0 0;
+  font-size: 15px;
+  color: #64748b;
+}
+
+.user-management-add-button {
+  border: none;
+  border-radius: 10px;
+  padding: 12px 18px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #fff;
+  background: linear-gradient(135deg, #0d7377 0%, #14b8a6 100%);
+  cursor: pointer;
+}
+
+.user-management-controls-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+.user-management-search-box {
+  flex: 1;
+  min-width: 280px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 10px 12px;
+}
+
+.user-management-search-input {
+  width: 100%;
+  border: none;
+  outline: none;
+  font-size: 14px;
+  color: #0f172a;
+}
+
+.user-management-filter-group {
+  display: flex;
+  gap: 10px;
+}
+
+.user-management-filter-select {
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-size: 14px;
+  color: #0f172a;
+  background: #fff;
+}
+
+.user-management-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+@media (max-width: 1024px) {
+  .user-management-stats-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .user-management-stats-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.user-management-stat-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border: 1px solid #e2e8f0;
+  box-shadow: none;
+}
+
+.user-management-stat-icon-box {
+  width: 46px;
+  height: 46px;
+  border-radius: 10px;
+  border: 2px solid #1976d2;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: inherit;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+
+/* Removed color backgrounds for stat icon boxes. All use border only now. */
+
+.user-management-stat-value {
+  margin: 0;
+  font-size: 23px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.user-management-stat-label {
+  margin: 4px 0 0;
+  font-size: 13px;
+  color: #64748b;
+}
+
+.user-management-card {
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.04);
+  overflow: hidden;
+}
+
+.user-management-table-container {
+  overflow-x: auto;
+}
+
+.user-management-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.user-management-table-header-row {
+  background: linear-gradient(135deg, #0d7377 0%, #14b8a6 100%);
+}
+
+.user-management-table-header {
+  text-align: center;
+  padding: 15px;
+  color: #fff;
+  font-size: 12px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.user-management-table-row-even {
+  background: #fff;
+}
+
+.user-management-table-row-odd {
+  background: #f8fafc;
+}
+
+.user-management-table-cell {
+  padding: 14px 15px;
+  text-align: center;
+  border-bottom: 1px solid #e2e8f0;
+  font-size: 14px;
+  color: #334155;
+}
+
+.user-management-user-id {
+  color: #0d7377;
+  font-weight: 700;
+}
+
+/* Center the name as a block */
+.user-management-user-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+}
+
+
+/* Avatar removed */
+
+.user-management-user-name {
+  color: #0f172a;
+  font-weight: 600;
+}
+
+.user-management-email {
+  color: #64748b;
+}
+
+.user-management-role-badge {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 4px 10px;
+  background: #dbeafe;
+  color: #1d4ed8;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.user-management-pond-badge {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 4px 10px;
+  background: #e0e7ff;
+  color: #4338ca;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.user-management-pond-id-badge {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 4px 10px;
+  background: #e0f2fe;
+  color: #0369a1;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.user-management-status-badge {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 4px 10px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.user-management-status-active {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.user-management-status-inactive {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.user-management-action-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  gap: 6px;
+}
+
+.user-management-action-button {
+  border: none;
+  border-radius: 8px;
+  background: #f1f5f9;
+  padding: 6px 9px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.user-management-action-button:hover {
+  background: #e2e8f0;
+}
+
+.user-management-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  border-top: 1px solid #e2e8f0;
+  padding: 16px 20px;
+}
+
+.user-management-pagination-text {
+  margin: 0;
+  color: #64748b;
+  font-size: 14px;
+}
+
+.user-management-pagination-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.user-management-page-button {
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  background: #fff;
+  color: #334155;
+  padding: 7px 11px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.user-management-page-button:hover {
+  background: #f8fafc;
+}
+
+.user-management-active-page-button {
+  border-color: #0d7377;
+  background: #0d7377;
+  color: #fff;
+}
+
+.red-circle-overlay {
+  box-shadow: 0 0 6px 2px rgba(255,0,0,0.25);
+  border: 2px solid #fff;
+  transition: background 0.2s;
+}
+
+@media (max-width: 768px) {
+  .user-management-container {
+    padding: 16px;
+  }
+
+  .user-management-page-title {
+    font-size: 26px;
+  }
+
+  .user-management-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .user-management-pagination {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

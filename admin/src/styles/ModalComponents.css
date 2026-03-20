@@ -1,0 +1,167 @@
+/* Modal component shared styles */
+
+/* --- Table appearance (modern) --- */
+.logs-table,
+.do-prediction-table,
+.device-prediction-table,
+.statistics-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 0.95rem;
+  margin-top: 0.75rem;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(148, 163, 184, 0.25);
+}
+
+.logs-table thead tr,
+.do-prediction-table thead tr,
+.device-prediction-table thead tr,
+.statistics-table thead tr {
+  background: linear-gradient(120deg, rgba(2, 132, 199, 0.9), rgba(16, 185, 129, 0.9));
+}
+
+.logs-table th,
+.do-prediction-table th,
+.device-prediction-table th,
+.statistics-table th {
+  text-align: center;
+  padding: 0.65rem 1rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.35);
+  color: white;
+  background: transparent;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.logs-table thead th:first-child,
+.do-prediction-table thead th:first-child,
+.device-prediction-table thead th:first-child,
+.statistics-table thead th:first-child {
+  border-top-left-radius: 1rem;
+}
+
+.logs-table thead th:last-child,
+.do-prediction-table thead th:last-child,
+.device-prediction-table thead th:last-child,
+.statistics-table thead th:last-child {
+  border-top-right-radius: 1rem;
+}
+
+.logs-table td,
+.do-prediction-table td,
+.device-prediction-table td,
+.statistics-table td {
+  padding: 0.65rem 1rem;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+  vertical-align: middle;
+  text-align: center;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.logs-table tbody tr:nth-child(even),
+.do-prediction-table tbody tr:nth-child(even),
+.device-prediction-table tbody tr:nth-child(even),
+.statistics-table tbody tr:nth-child(even) {
+  background: rgba(255, 255, 255, 0.55);
+}
+
+.logs-table tbody tr:nth-child(odd),
+.do-prediction-table tbody tr:nth-child(odd),
+.device-prediction-table tbody tr:nth-child(odd),
+.statistics-table tbody tr:nth-child(odd) {
+  background: rgba(247, 250, 252, 0.65);
+}
+
+.logs-table tbody tr:hover,
+.do-prediction-table tbody tr:hover,
+.device-prediction-table tbody tr:hover,
+.statistics-table tbody tr:hover {
+  background: rgba(59, 130, 246, 0.15);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+}
+
+/* --- Compact statistics toggles (row style) --- */
+.statistics-tab {
+  padding: 0.75rem 0.5rem 1.25rem;
+}
+
+.statistics-tab h3 {
+  margin-bottom: 0.25rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.statistics-tab p {
+  margin-top: 0;
+  color: rgba(15, 23, 42, 0.75);
+  font-size: 0.95rem;
+}
+
+.stats-averages {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1rem 0 1.25rem;
+  align-items: flex-start;
+}
+
+.avg-stat-card {
+  border: 1px solid rgba(148, 163, 184, 0.4);
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 0.75rem;
+  padding: 0.6rem 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  min-height: 84px;
+  width: 220px;
+  flex: 1 1 220px;
+  max-width: 240px;
+  transition: box-shadow 150ms ease, border-color 150ms ease, transform 150ms ease;
+  cursor: pointer;
+}
+
+.avg-stat-card:hover {
+  box-shadow: 0 14px 24px rgba(15, 23, 42, 0.12);
+  transform: translateY(-2px);
+}
+
+.avg-stat-card.active {
+  border-color: rgba(34, 197, 94, 0.75);
+  background: rgba(236, 252, 244, 0.9);
+}
+
+.avg-label-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: rgba(15, 23, 42, 0.85);
+}
+
+.avg-color-dot {
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.75);
+}
+
+.avg-value {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: rgba(15, 23, 42, 0.9);
+}
+
+.avg-toggle-text {
+  font-size: 0.78rem;
+  color: rgba(100, 116, 139, 0.85);
+}

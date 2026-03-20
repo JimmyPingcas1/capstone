@@ -1,0 +1,49 @@
+[
+  {
+    "id": "69b520a3904d7df76ba1f39c",
+    "user_id": "69a39acc56b522b28deec4a9",
+    "pond_id": "69a39f9cbb28dfc1b9a307fb",
+    "temperature": 17,
+    "turbidity": 72,
+    "ph": 7.4,
+    "ammonia": 0.12,
+    "do": 4.5,
+    "predicted_dissolved_oxygen": 4.5,
+    "do_confidence": 60.4,
+    "do_risk_level": "LOW",
+    "aerator_state": false,
+    "validation_warnings": ["LOW_PH", "HIGH_TURBIDITY"],
+    "created_at": "2026-03-14T08:47:31.392+00:00",
+    "pondName": "Sample Pond",
+    "pondId": "sample-pond",
+    "date": "2026-03-14",
+    "time": "16:47"
+  },
+  {
+    "id": "69b5208e904d7df76ba1f39b",
+    "user_id": "69a39acc56b522b28deec4a9",
+    "pond_id": "69a39f9cbb28dfc1b9a307fb",
+    "sensor_id": "69b52085904d7df76ba1f39a",
+    "temperature": 18,
+    "turbidity": 15,
+    "ph": 7.2,
+    "ammonia": 0.03,
+    "do": 6.2,
+    "predicted_dissolved_oxygen": 6.2,
+    "do_confidence": 75.1,
+    "do_risk_level": "NORMAL",
+    "aerator_state": true,
+    "detected_issues": ["LOW_PH"],
+    "final_devices": {
+      "heater": false,
+      "water_pump": false,
+      "danger": false
+    },
+    "prediction_method": "ml_model",
+    "created_at": "2026-03-14T08:47:10.053694+00:00",
+    "pondName": "Sample Pond",
+    "pondId": "sample-pond",
+    "date": "2026-03-14",
+    "time": "16:42"
+  }
+]

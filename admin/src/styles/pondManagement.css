@@ -1,0 +1,251 @@
+.pond-management-container {
+  padding: 32px;
+  max-width: 1400px;
+  margin: 0 auto;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.pond-management-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.pond-management-page-title {
+  margin: 0;
+  font-size: 32px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.pond-management-page-subtitle {
+  margin: 8px 0 0;
+  color: #64748b;
+  font-size: 15px;
+}
+
+.pond-management-add-button {
+  border: none;
+  border-radius: 10px;
+  color: #fff;
+  background: linear-gradient(135deg, #0d7377 0%, #14b8a6 100%);
+  font-weight: 700;
+  font-size: 14px;
+  padding: 12px 18px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.pond-management-add-button:hover {
+  transform: translateY(-1px);
+}
+
+.pond-management-controls-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-bottom: 22px;
+}
+
+.pond-management-search-box {
+  flex: 1;
+  min-width: 280px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  background: #fff;
+  padding: 10px 12px;
+}
+
+.pond-management-search-input {
+  border: none;
+  outline: none;
+  width: 100%;
+  font-size: 14px;
+  color: #0f172a;
+}
+
+.pond-management-filter-group {
+  display: flex;
+  gap: 10px;
+}
+
+.pond-management-filter-select {
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-size: 14px;
+  background: #fff;
+  color: #0f172a;
+}
+
+.pond-management-card {
+  border-radius: 14px;
+  border: 1px solid #e2e8f0;
+  background: #fff;
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.04);
+  overflow: hidden;
+}
+
+.pond-management-table-container {
+  overflow-x: auto;
+}
+
+.pond-management-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.pond-management-table-header-row {
+  background: linear-gradient(135deg, #0d7377 0%, #14b8a6 100%);
+}
+
+.pond-management-table-header {
+  text-align: center;
+  padding: 15px;
+  color: #fff;
+  font-size: 12px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.pond-management-table-row-even {
+  background: #fff;
+}
+
+.pond-management-table-row-odd {
+  background: #f8fafc;
+}
+
+.pond-management-table-cell {
+  padding: 14px 15px;
+  text-align: center;
+  border-bottom: 1px solid #e2e8f0;
+  font-size: 14px;
+  color: #334155;
+}
+
+.pond-management-pond-id {
+  color: #0d7377;
+  font-weight: 700;
+}
+
+.pond-management-pond-name {
+  color: #0f172a;
+  font-weight: 600;
+}
+
+.pond-management-device-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: #dbeafe;
+  color: #1d4ed8;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.pond-management-status-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: #dcfce7;
+  color: #166534;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.pond-management-action-buttons {
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.pond-management-action-button {
+  border: none;
+  border-radius: 8px;
+  background: #f1f5f9;
+  padding: 6px 9px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.pond-management-action-button:hover {
+  background: #e2e8f0;
+}
+
+.pond-management-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  border-top: 1px solid #e2e8f0;
+  padding: 16px 20px;
+}
+
+.pond-management-pagination-text {
+  margin: 0;
+  color: #64748b;
+  font-size: 14px;
+}
+
+.pond-management-pagination-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.pond-management-page-button {
+  border: 1px solid #e2e8f0;
+  background: #fff;
+  color: #334155;
+  border-radius: 8px;
+  padding: 7px 11px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.pond-management-page-button:hover {
+  background: #f8fafc;
+}
+
+.pond-management-active-page-button {
+  border-color: #0d7377;
+  background: #0d7377;
+  color: #fff;
+}
+
+.red-circle-overlay {
+  box-shadow: 0 0 6px 2px rgba(255,0,0,0.25);
+  border: 2px solid #fff;
+  transition: background 0.2s;
+}
+
+@media (max-width: 768px) {
+  .pond-management-container {
+    padding: 16px;
+  }
+
+  .pond-management-page-title {
+    font-size: 26px;
+  }
+
+  .pond-management-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .pond-management-pagination {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

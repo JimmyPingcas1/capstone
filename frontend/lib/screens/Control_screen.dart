@@ -34,11 +34,7 @@ class ControlScreen extends StatelessWidget {
             ),
 
             const SizedBox(height: 30),
-
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16),
-              child: PondControl(pondId: 2),
-            ),
+            
             const SizedBox(height: 20),
           ],
         ),

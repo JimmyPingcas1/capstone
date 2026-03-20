@@ -1,18 +1,27 @@
 import 'package:flutter/material.dart';
+import '../../utils/api_service.dart';
 
 class DashboardPondStatusWidget extends StatelessWidget {
   const DashboardPondStatusWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final String? pondId = ApiService.pondId;
+
+    final pondName = 'Pond Alpha';
+    final status = 'Safe';
+    final updated = 'Just now';
+    final statusColor = Colors.green;
+    final progress = 0.9;
+
     return Container(
       margin: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: Colors.white, // background of the whole box
+        color: Colors.white,
         borderRadius: BorderRadius.circular(14),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.08), // subtle shadow
+            color: Colors.black.withOpacity(0.08),
             blurRadius: 10,
             offset: const Offset(0, 4),
           ),
@@ -23,65 +32,34 @@ class DashboardPondStatusWidget extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Header
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const Text(
-                  'Pond Status',
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                TextButton(
-                  onPressed: () {},
-                  child: const Text(
-                    'View all',
-                    style: TextStyle(
-                      fontSize: 14,
-                      color: Colors.blue,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                ),
-              ],
+
+            /// HEADER
+            const Text(
+              'Pond Status',
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
             ),
 
-            const Text(
-              '3 ponds being monitored',
-              style: TextStyle(
+            Text(
+              pondId != null ? 'Monitoring 1 pond' : 'No pond selected',
+              style: const TextStyle(
                 fontSize: 14,
                 color: Colors.grey,
               ),
             ),
 
-            const SizedBox(height: 14),
+            const SizedBox(height: 16),
 
-            // Pond items
-            _pondItem(
-              pondName: 'Pond Alpha',
-              status: 'Healthy',
-              updated: '2 min ago',
-              statusColor: Colors.green,
-              progress: 0.9,
-            ),
-
-            _pondItem(
-              pondName: 'Pond Beta',
-              status: 'Healthy',
-              updated: '5 min ago',
-              statusColor: Colors.green,
-              progress: 0.85,
-            ),
-
-            _pondItem(
-              pondName: 'Pond Gamma',
-              status: 'Warning',
-              updated: '8 min ago',
-              statusColor: Colors.orange,
-              progress: 0.6,
-            ),
+            if (pondId != null)
+              _pondItem(
+                pondName: pondName,
+                status: status,
+                updated: updated,
+                statusColor: statusColor,
+                progress: progress,
+              ),
           ],
         ),
       ),
@@ -96,24 +74,16 @@ class DashboardPondStatusWidget extends StatelessWidget {
     required double progress,
   }) {
     return Container(
-      margin: const EdgeInsets.only(bottom: 12),
-      padding: const EdgeInsets.all(12),
+      padding: const EdgeInsets.all(14),
       decoration: BoxDecoration(
-        color: Colors.white,
         borderRadius: BorderRadius.circular(14),
-        border: Border.all(color: statusColor, width: 0.5), // <--- status-based border
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.08),
-            blurRadius: 10,
-            offset: const Offset(0, 4),
-          ),
-        ],
+        border: Border.all(color: statusColor, width: 1),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Title and Status
+
+          /// POND NAME + STATUS
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -124,14 +94,16 @@ class DashboardPondStatusWidget extends StatelessWidget {
                   fontWeight: FontWeight.w600,
                 ),
               ),
+
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                 decoration: BoxDecoration(
                   color: statusColor.withOpacity(0.15),
                   borderRadius: BorderRadius.circular(20),
                 ),
                 child: Text(
-                  status,
+                  status, // SAFE
                   style: TextStyle(
                     fontSize: 12,
                     color: statusColor,
@@ -142,22 +114,23 @@ class DashboardPondStatusWidget extends StatelessWidget {
             ],
           ),
 
-          const SizedBox(height: 10),
+          const SizedBox(height: 16),
 
-          // Progress bar
-          ClipRRect(
-            borderRadius: BorderRadius.circular(6),
-            child: LinearProgressIndicator(
-              value: progress,
-              minHeight: 6,
-              backgroundColor: Colors.grey.shade200,
-              valueColor: AlwaysStoppedAnimation<Color>(statusColor),
+          /// CENTER MESSAGE
+          Center(
+            child: Text(
+              'No problem occurred yet',
+              style: TextStyle(
+                fontSize: 13,
+                color: Colors.grey.shade600,
+                fontWeight: FontWeight.w500,
+              ),
             ),
           ),
 
-          const SizedBox(height: 6),
+          const SizedBox(height: 12),
 
-          // Updated text
+          /// UPDATED TEXT
           Text(
             'Updated $updated',
             style: const TextStyle(

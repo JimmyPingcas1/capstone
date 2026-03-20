@@ -27,22 +27,6 @@ class PondScreen extends StatelessWidget {
                       color: Colors.blue,
                     ),
                   ),
-                  ElevatedButton.icon(
-                    onPressed: () {
-                      // TODO: Add functionality for adding a new pond
-                    },
-                    icon: const Icon(Icons.add, size: 18),
-                    label: const Text("Add Pond"),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.blue,
-                      foregroundColor: Colors.white,
-                      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
-                      textStyle: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                    ),
-                  ),
                 ],
               ),
             ),

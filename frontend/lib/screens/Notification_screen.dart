@@ -30,23 +30,29 @@ class NotificationScreen extends StatelessWidget {
         children: const [
           ListTile(
             leading: Icon(Icons.notifications, color: Colors.blue),
-            title: Text("Your order has been shipped"),
+            title: Text("Pond 1: Dissolved oxygen is optimal"),
             subtitle: Text("2 hours ago"),
           ),
           Divider(),
           ListTile(
             leading: Icon(Icons.notifications, color: Colors.blue),
-            title: Text("New message from Aqua Support"),
+            title: Text("Pond 1: Water temperature is slightly high"),
             subtitle: Text("5 hours ago"),
           ),
           Divider(),
           ListTile(
             leading: Icon(Icons.notifications, color: Colors.blue),
-            title: Text("Reminder: Weekly pond check"),
+            title: Text("Pond 1: Aerator turned ON automatically"),
             subtitle: Text("Yesterday"),
           ),
           Divider(),
-          // Add more notifications as needed
+          ListTile(
+            leading: Icon(Icons.notifications, color: Colors.blue),
+            title: Text("Pond 1: Weekly maintenance reminder"),
+            subtitle: Text("2 days ago"),
+          ),
+          Divider(),
+          // Add more pond-related notifications as needed
         ],
       ),
     );

@@ -1,0 +1,89 @@
+# .gitignore for capstone project
+# Prevent large files and build artifacts from being committed
+
+# Node/Vite/React (admin)
+admin/node_modules/
+admin/dist/
+admin/.env
+admin/.DS_Store
+admin/.cache/
+
+# Flutter/Dart (frontend)
+frontend/build/
+frontend/.dart_tool/
+frontend/.packages
+frontend/.flutter-plugins
+frontend/.flutter-plugins-dependencies
+frontend/.DS_Store
+frontend/.env
+frontend/.idea/
+frontend/.vscode/
+frontend/.gradle/
+frontend/android/.gradle/
+frontend/android/app/build/
+frontend/ios/Pods/
+frontend/ios/Runner.xcworkspace/
+frontend/ios/Flutter/Flutter.framework/
+frontend/ios/Flutter/Flutter.podspec
+frontend/ios/Flutter/App.framework/
+frontend/ios/Flutter/engine/
+frontend/ios/Flutter/ephemeral/
+frontend/linux/build/
+frontend/macos/build/
+frontend/web/build/
+frontend/windows/build/
+frontend/test/
+
+# Python (server, z-AI, etc.)
+server/__pycache__/
+server/*.pyc
+server/*.pyo
+server/*.pyd
+server/.env
+server/.DS_Store
+z-AI/__pycache__/
+z-AI/*.pyc
+z-AI/*.pyo
+z-AI/*.pyd
+z-AI/.env
+z-AI/.DS_Store
+
+# General
+*.log
+*.tmp
+*.bak
+*.swp
+*.swo
+*.swn
+*.lock
+.DS_Store
+Thumbs.db
+
+# Ignore large data/model/output folders
+z-AI/data/
+z-AI/code/
+z-AI/shit/
+z-AI/DODO/
+z-AI/pond_report.ipynb
+z-AI/AImodelAndTrainingPY/example/
+z-AI/AImodelAndTrainingPY/pondControlPy/
+z-AI/AImodelAndTrainingPY/predictDoPy/
+z-AI/ZAImodelAndTrainingPY/example/
+z-AI/ZAImodelAndTrainingPY/pondControlPy/
+z-AI/ZAImodelAndTrainingPY/predictDoPy/
+
+# Ignore all build and output folders recursively
+**/build/
+**/dist/
+**/output/
+**/.env
+**/.DS_Store
+**/.vscode/
+**/.idea/
+
+# Ignore temp and backup files
+*.out.txt
+*.old
+*.backup
+
+# Add more patterns as needed for new large files or folders

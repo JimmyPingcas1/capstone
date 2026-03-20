@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../widgets/dashboardComponents/dashboardPondStatistics.dart'; 
-import '../widgets/dashboardComponents/dashboardAlert.dart';
+// import '../widgets/dashboardComponents/dashboardAlert.dart';
 import '../widgets/dashboardComponents/dashboardPondStatus.dart';
 
 class DashboardScreen extends StatelessWidget {
@@ -28,7 +28,6 @@ class DashboardScreen extends StatelessWidget {
             ),
             
             const WaterQualityTrendWidget(),
-            const DashboardAlertWidget(),
             const DashboardPondStatusWidget(),
           ],
         ),

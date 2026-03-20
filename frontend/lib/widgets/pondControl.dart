@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'pondControlComponents/pondParameters.dart';
 import 'pondControlComponents/pondAutomationStatus.dart';
 import 'pondControlComponents/pondDevices.dart';
+import 'package:fishpond/utils/api_service.dart';
 
 class PondControl extends StatefulWidget {
   final int pondId;
@@ -14,15 +14,109 @@ class PondControl extends StatefulWidget {
 
 class _PondControlState extends State<PondControl> {
   bool aiEnabled = false;
+  bool manualMode = true;
+  Map<String, bool> deviceStates = {
+    "aerator": false,
+    "waterpump": false,
+    "heater": false,
+  };
 
   String get pondName {
     switch (widget.pondId) {
       case 1:
         return 'Pond Alpha';
-      case 2:
-        return 'Pond Beta';
       default:
         return 'Unknown Pond';
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    print('\n🔵 PondControl initialized for Pond ID: ${widget.pondId}');
+    print('   ApiService.userId: ${ApiService.userId}');
+    print('   ApiService.pondId: ${ApiService.pondId}');
+    _loadInitialState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
+  /// Load AI mode & device states
+  Future<void> _loadInitialState() async {
+    print('📥 Loading initial state...');
+    try {
+      final devices = await ApiService.getDeviceStates();
+      final aiData = await ApiService.getAiMode();
+
+      print('   Devices loaded: $devices');
+      print('   AI data loaded: $aiData');
+
+      if (!mounted) return;
+      setState(() {
+        deviceStates = devices;
+        aiEnabled = aiData['aiMode'] ?? false;
+        manualMode = aiData['manualMode'] ?? true;
+      });
+      print('✅ Initial state loaded: aiEnabled=$aiEnabled, manualMode=$manualMode\n');
+    } catch (e) {
+      print('❌ Failed to load initial state: $e\n');
+    }
+  }
+
+  /// Toggle AI mode via WebSocket
+  Future<void> _toggleAiMode(bool value) async {
+    print('\n🔄 TOGGLE AI MODE REQUESTED: $value');
+    print('   Current aiEnabled state: $aiEnabled');
+    print('   User ID: ${ApiService.userId}');
+    print('   Pond ID: ${ApiService.pondId}');
+    
+    try {
+      await ApiService.ensureWebSocketConnected(
+        onMessage: (message) {
+          if (message is Map<String, dynamic>) {
+            final type = message['type'];
+            if (type == 'ai_mode') {
+              print('✅ AI mode response received: ${message['aiMode']}');
+            }
+          }
+        },
+        onError: (error) {
+          print('❌ WebSocket error: $error');
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text('Connection error: $error')),
+          );
+        },
+        onDone: () {
+          print('🔌 WebSocket connection closed');
+        },
+      );
+
+      print('📤 Sending toggleAiMode request...');
+      final response = await ApiService.toggleAiMode(value);
+      print('📥 Toggle response: $response');
+
+      if (!mounted) return;
+      setState(() {
+        aiEnabled = value;
+        manualMode = !value;
+      });
+      print('✅ UI state updated: aiEnabled=$aiEnabled, manualMode=$manualMode\n');
+      
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('AI ${value ? 'enabled' : 'disabled'} successfully'),
+        ),
+      );
+    } catch (e) {
+      print('❌ Failed to toggle AI mode: $e\n');
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Failed to update AI control: $e'),
+        ),
+      );
     }
   }
 
@@ -73,31 +167,19 @@ class _PondControlState extends State<PondControl> {
                       scale: 0.8,
                       child: Switch(
                         value: aiEnabled,
-                        onChanged: (value) {
-                          setState(() {
-                            aiEnabled = value;
-                          });
-                        },
-                        thumbColor:
-                            MaterialStateProperty.resolveWith<Color>((states) {
-                          if (states.contains(MaterialState.selected)) {
-                            return Colors.white;
-                          }
+                        onChanged: _toggleAiMode,
+                        thumbColor: MaterialStateProperty.resolveWith<Color>((states) {
+                          if (states.contains(MaterialState.selected)) return Colors.white;
                           return Colors.blue;
                         }),
-                        trackColor:
-                            MaterialStateProperty.resolveWith<Color>((states) {
-                          if (states.contains(MaterialState.selected)) {
+                        trackColor: MaterialStateProperty.resolveWith<Color>((states) {
+                          if (states.contains(MaterialState.selected))
                             return Colors.blue.withOpacity(0.8);
-                          }
                           return Colors.transparent;
                         }),
-                        trackOutlineColor:
-                            MaterialStateProperty.all(Colors.blue),
-                        trackOutlineWidth:
-                            MaterialStateProperty.all(2),
-                        materialTapTargetSize:
-                            MaterialTapTargetSize.shrinkWrap,
+                        trackOutlineColor: MaterialStateProperty.all(Colors.blue),
+                        trackOutlineWidth: MaterialStateProperty.all(2),
+                        materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                       ),
                     ),
                   ],
@@ -106,68 +188,16 @@ class _PondControlState extends State<PondControl> {
             ),
             const SizedBox(height: 15),
 
-            // /// POND PARAMETERS
-            // PondParameters(
-            //   temperature: 26.5,
-            //   ph: 7.8,
-            //   dissolvedO2: 4.2,
-            //   ammonia: 0.8,
-            //   turbidity: 6.5,
-            // ),
-
-            // const SizedBox(height: 30),
-
-            /// POND ALERTS HEADER
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: const [
-                Icon(
-                  Icons.warning_amber_rounded,
-                  size: 25,
-                  color: Colors.orange,
-                ),
-                SizedBox(width: 4),
-                Text(
-                  'Pond Alerts',
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 4),
-
-            /// ALERT CARDS
+            /// POND ALERTS
             const PondAutomationStatusContent(),
-
-            const SizedBox(height: 3),
-            const Divider(thickness: 1, color: Colors.black12),
             const SizedBox(height: 30),
 
-            /// POND DEVICES HEADER
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: const [
-                Icon(
-                  Icons.devices_rounded,
-                  size: 25,
-                  color: Colors.blue,
-                ),
-                SizedBox(width: 6),
-                Text(
-                  'Pond Control Devices',
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ],
+            /// POND DEVICES
+            PondDevices(
+              aiEnabled: aiEnabled,
+              manualMode: manualMode,
+              initialDevices: deviceStates,
             ),
-            const SizedBox(height: 8),
-
-            /// DEVICE CARDS
-            PondDevices(aiEnabled: aiEnabled),
           ],
         ),
       ),

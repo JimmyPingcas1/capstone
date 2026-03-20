@@ -6,23 +6,77 @@ class PondAutomationStatusContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     final List<Map<String, dynamic>> problems = [
-      {
-        'problem': 'Low DO: 10 mg/L (Critical)',
-        'devices': 'Aerator',
-        'status': false, // not fixing
-      },
-      {
-        'problem': 'High Ammonia: 5 mg/L (Warning)',
-        'devices': 'Pump, Filter',
-        'status': true, // fixing
-      },
-      {
-        'problem': 'Temperature Normal',
-        'devices': 'Heater, Sensor',
-        'status': true,
-      },
+      // Example: {'problem': 'Low DO', 'devices': 'Aerator', 'status': false},
     ];
+
+    if (problems.isEmpty) {
+      return Container(
+        width: double.infinity,
+        margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 0),
+        padding: const EdgeInsets.all(10),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(12),
+          border: Border.all(color: Colors.green, width: 1.2),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Text(
+                  'Problem',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 14,
+                  ),
+                ),
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                  decoration: BoxDecoration(
+                    color: Colors.green.withOpacity(0.12),
+                    borderRadius: BorderRadius.circular(16),
+                  ),
+                  child: const Text(
+                    'Safe',
+                    style: TextStyle(
+                      color: Colors.green,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 13,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 18),
+            const Center(
+              child: Text(
+                'No problem occurred yet',
+                style: TextStyle(
+                  color: Colors.grey,
+                  fontSize: 15,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ),
+            const SizedBox(height: 18),
+            const Align(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                'Updated Just now',
+                style: TextStyle(
+                  color: Colors.grey,
+                  fontSize: 12,
+                ),
+              ),
+            ),
+          ],
+        ),
+      );
+    }
 
     return Column(
       children: problems
@@ -52,7 +106,7 @@ class CompactStatusCard extends StatelessWidget {
 
   Color getStatusColor() => isFixing ? Colors.green : Colors.red;
 
-  String getStatusText() => isFixing ? 'Fixing' : 'Not Fixing';
+  String getStatusText() => isFixing ? 'Fixing' : 'Unfixed';
 
   @override
   Widget build(BuildContext context) {

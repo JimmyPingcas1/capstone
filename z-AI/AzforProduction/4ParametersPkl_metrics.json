@@ -1,0 +1,55 @@
+{
+  "model_name": "ExtraTrees",
+  "wrapper": "MultiOutputClassifier",
+  "feature_columns": [
+    "pH",
+    "Ammonia",
+    "Temp",
+    "Turbidity",
+    "pH_Status",
+    "Ammonia_Status",
+    "Temp_Status",
+    "Turbidity_Status"
+  ],
+  "target_columns": [
+    "Water Pump",
+    "Heater"
+  ],
+  "excluded_features": [
+    "DO",
+    "DO_Status"
+  ],
+  "excluded_targets": [
+    "Aerator"
+  ],
+  "status_encoding": {
+    "Low": 0,
+    "High": 1
+  },
+  "actuator_encoding": {
+    "OFF": 0,
+    "ON": 1
+  },
+  "source_csv": "C:\\Users\\USER\\Desktop\\capstone\\z-AI\\DODO\\AforDeviceControlModel\\withTimePondData_station1.csv",
+  "schema_csv": "C:\\Users\\USER\\Desktop\\capstone\\z-AI\\DODO\\AforDeviceControlModel\\withTimePondData_station1_4params_training_schema.csv",
+  "seed": 42,
+  "test_size": 0.2,
+  "label_noise_rate": 0.045,
+  "label_noise_counts": {
+    "Water Pump": 1074,
+    "Heater": 1075
+  },
+  "metrics": {
+    "subset_accuracy": 0.9064929607060307,
+    "macro_f1": 0.9621202655051249,
+    "per_target_accuracy": {
+      "Water Pump": 0.9525110317293549,
+      "Heater": 0.9516705190166002
+    },
+    "per_target_f1": {
+      "Water Pump": 0.9716436637390213,
+      "Heater": 0.9525968672712284
+    }
+  },
+  "trained_at": "2026-03-08T09:37:35.072431+00:00"
+}

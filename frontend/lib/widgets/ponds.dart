@@ -1,133 +1,129 @@
+
 import 'package:flutter/material.dart';
+import '../utils/api_service.dart';
 import 'pondComponents/pondParametersStatus.dart';
-import 'pondComponents/pondParametersSafeLevels.dart';
-import 'pondComponents/pondStatistics.dart'; // optional
-import 'pondComponents/pondStatistics.dart'; // <-- WaterQualityTrendWidget
+import 'pondComponents/pondStatistics.dart';
 
-class Ponds extends StatelessWidget {
+class Ponds extends StatefulWidget {
   const Ponds({super.key});
+  @override
+  State<Ponds> createState() => _PondsState();
+}
 
-  final List<Map<String, dynamic>> pondList = const [
-    {
-      'name': 'Pond Alpha',
-      'status': 'Healthy',
-      'statusColor': Colors.green,
-      'fishType': 'Tilapia',
-    },
-    {
-      'name': 'Pond Beta',
-      'status': 'Warning',
-      'statusColor': Colors.orange,
-      'fishType': 'Catfish',
-    },
-    {
-      'name': 'Pond Gamma',
-      'status': 'Critical',
-      'statusColor': Colors.red,
-      'fishType': 'Bangus',
-    },
-  ];
+class _PondsState extends State<Ponds> {
+  String status = 'Healthy';
+  Color statusColor = Colors.green;
 
   @override
   Widget build(BuildContext context) {
+    final String? pondId = ApiService.pondId;
+    final String pondName = 'Pond Alpha';
+    final String fishType = 'Hito';
+
+    if (pondId == null) {
+      return const Center(child: Text('No pond selected for this user.'));
+    }
+
     return SingleChildScrollView(
-      child: Column(
-        children: pondList.map((pond) {
-          return Container(
-            margin: const EdgeInsets.only(bottom: 24),
-            padding: const EdgeInsets.all(16),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(12),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withOpacity(0.05),
-                  blurRadius: 8,
-                  offset: const Offset(0, 3),
-                ),
-              ],
+      child: Container(
+        margin: const EdgeInsets.only(bottom: 24),
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(12),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.05),
+              blurRadius: 8,
+              offset: const Offset(0, 3),
             ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+          ],
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // Pond Name and Status
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                // Pond Name and Status
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          pond['name'],
-                          style: const TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        const SizedBox(height: 4),
-                        RichText(
-                          text: TextSpan(
-                            style: TextStyle(
-                              fontSize: 13,
-                              color: Colors.grey[700],
-                              fontWeight: FontWeight.w500,
-                            ),
-                            children: [
-                              const TextSpan(text: 'Fish Type: '),
-                              TextSpan(
-                                text: pond['fishType'],
-                                style: const TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.w800,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
+                    Text(
+                      pondName,
+                      style: const TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 10,
-                        vertical: 4,
-                      ),
-                      decoration: BoxDecoration(
-                        color: pond['statusColor'],
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: Text(
-                        pond['status'],
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 12,
+                    const SizedBox(height: 4),
+                    RichText(
+                      text: TextSpan(
+                        style: TextStyle(
+                          fontSize: 13,
+                          color: Colors.grey,
+                          fontWeight: FontWeight.w500,
                         ),
+                        children: [
+                          const TextSpan(text: 'Fish Type: '),
+                          TextSpan(
+                            text: fishType,
+                            style: const TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.w800,
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ],
                 ),
-
-                const SizedBox(height: 16),
-
-                // Safe Levels
-                const ParametersSafeLevel(),
-
-                const Divider(),
-                const SizedBox(height: 16),
-
-                // Pond Parameters
-                const PondParametersStatus(),
-                const SizedBox(height: 8),
-
-                const Divider(),
-                const SizedBox(height: 24),
-                
-                // Water Quality Trend Chart (function call)
-                const PondStatistics(),
+                Container(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 10,
+                    vertical: 4,
+                  ),
+                  decoration: BoxDecoration(
+                    color: statusColor,
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Text(
+                    status,
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 12,
+                    ),
+                  ),
+                ),
               ],
             ),
-          );
-        }).toList(),
+
+            const SizedBox(height: 16),
+
+            const Divider(),
+            const SizedBox(height: 16),
+
+            // Pond Parameters
+            PondParametersStatus(
+              pondId: pondId,
+              onStatusChanged: (newStatus, newColor) {
+                if (newStatus != status || newColor != statusColor) {
+                  setState(() {
+                    status = newStatus;
+                    statusColor = newColor;
+                  });
+                }
+              },
+            ),
+            const SizedBox(height: 8),
+
+            const Divider(),
+            const SizedBox(height: 24),
+            // Water Quality Trend Chart (function call)
+            const PondStatistics(),
+          ],
+        ),
       ),
     );
   }
